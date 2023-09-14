@@ -1,0 +1,153 @@
+# data settings
+data:
+  host: 'localhost'
+  port: 3306
+  database: 'pvplog_db'
+  username: 'username'
+  password: 'password'
+  options: 'useSSL=false&autoReconnect=true'
+
+# save zone settings
+safe-zones:
+  # should pvplog push the player back if they try to enter the safe wg-regions specified below, if they're in combat.
+  safezone-region-push-back:
+    enable: true
+    force: 3.0
+  # worldguard regions safezones
+  wg-regions:
+    - 'safezone1'
+    - 'safezone2'
+  # forced pvp worldguard regions
+  pvp-regions:
+    - 'pvp'
+    - 'warzone'
+  # will force toggle players if they are in this world.
+  forced-worlds:
+    - 'kitpvp'
+
+# vault should be installed for economy section to work
+# changing the main 'enable' will require a restart to take effect.
+#
+# use - in the value to take away from their balance.
+economy:
+  enable: true
+  # killer economy settings
+  kill:
+    enable: true
+    # how much the player will receive when they kill.
+    value: 3
+  death:
+    enable: true
+    # how much will be taken away if player dies
+    value: -5
+
+# pvp function settings
+pvp:
+  # what should be the default setting to pvp toggle.
+  default-setting: false
+  # what game mode should the damager be set in if they are in creative and hit someone.
+  creative-setting: 'SURVIVAL'
+  # will display a blood effect particle when the player is hit.
+  blood-effect: true
+  # will display a red particle above their head, if pvp is on.
+  indicate-pvp-on: true
+
+# combatlog system
+combat:
+  interval: 5 # in seconds.
+  action-bar: true
+  current-actions:
+    # block all commands.
+    block-all-commands: false
+    # prevent players from using ender pearls
+    block-ender-pearl: true
+    # prevent players from using elytra
+    block-elytra: true
+    # prevent players from using trident
+    block-trident: false
+    # prevent players from using chorus fruit
+    block-chorus-fruit: false
+    # what commands should be enabled during in combat tag.
+    disabled-commands:
+      - 'spawn'
+      - 'home'
+      - 'warp'
+      - 'tpa'
+      - 'fly'
+      - 'pvp'
+      - 'ec'
+      - 'enderchest'
+  # actions on leave if in combat tag?
+  leave-actions:
+    # note: this ban function usin the default bukkit ban list api.
+    # if you want to use a ban plugin, use the 'execute-commands' before.
+    ban: false
+    # just clears the inventory.
+    clear-inv: false
+    # will kill the player and drop loot on leave
+    kill: true
+    execute-commands:
+      enable: false
+      # use these commands to have more customization against the player.
+      commands:
+        - 'ban %player% &cCombat logging!'
+
+# trust system
+trust:
+  enable: true
+  invite-expire: 30 # seconds
+  # how many players can a person trust
+  max-trust-allowed: 10
+
+# edit all messages to your liking!
+messages:
+  # plugin messages
+  no-permission: '&cYou don''t have permission to do this.'
+  reloaded: '&e&lSuccess! &7Plugin Reloaded!'
+  # combat messages
+  combat-command-deny: '&c&lError! &7You can''t do this command whilst in combat!'
+  combat-toggle-disabled: '&aYou''re no longer in combat.'
+  combat-toggle-enabled: '&cYou''re now in combat.'
+  combat-action-bar: '&6&lCombat! &7Time Left: &f%time%s'
+  # pvp messages
+  pvp-toggle-enabled: '&4&lPvP Enabled! &7Anyone will be able to hit you now!'
+  pvp-toggle-disabled: '&a&lPvP Disabled! &7Only trusted players will now be able to hit you.'
+  pvp-denied: '&c&lError! &7You can''t damage this player.'
+  pvp-forced-world: '&4&lWarning! &7Forced pvp for this world!'
+  pvp-status: '&a&lStatus! &7Your pvp is &f&l%status%'
+  # error checks
+  player-never-joined: '&c&lError! &7This player has never joined before!'
+  no-players-trusted: '&c&lError! &7No player''s trusted yet!'
+  player-already-trusted: '&c&lError! &7This player is already trusted!'
+  player-not-trusted: '&c&lError! &7This player is not trusted!'
+  player-self: '&c&lError! &7You can''t perform this on yourself!'
+  trust-disabled: '&c&lError! &7Trusting feature disabled!'
+  trust-reached-max-player: '&c&lError! &7You''ve reached the max trust limit!'
+  pvp-already-enabled: '&c&lError! &7Your pvp is already on!'
+  pvp-already-disabled: '&c&lError! &7Your pvp is already off!'
+  combat-block-item: '&c&lError! &7You can''t use this whilst in combat!'
+  combat-block-elytra: '&c&lError! &7You can''t use elytra whilst in combat!'
+  player-not-online: '&c&lError! &7This player is not online!'
+  # trust messages
+  trust-list-header: '&6&lTrust List:'
+  trust-list-player: '&8&l> &f%player%'
+  trust-added-player: '&a&lAdded! &f%player% &7has been added to your trust list.'
+  trust-remove-player: '&c&lRemoved! &f%player% &7has been remove from your trust list.'
+  # admin messages
+  admin-set-pvp: '&e&lSuccess! &7You have set %player%''s to &f&l%status%'
+  admin-check-status: '&a&lStatus! &f%player%''s &7pvp is &f&l%status%'
+  # invite trust messages
+  trust-invite-trust: '&6&lInvited! &7You''ve invited %player% to trust you.'
+  trust-invite-accept: '&a&lAccepted! &7%player% has accepted your trust invite.'
+  trust-invite-deny: '&c&lDeclined! &7%player% has declined your trust invite.'
+  trust-invite-accept-self: '&a&lAccepted! &7You have accepted their invite!'
+  trust-invite-deny-self: '&c&lDeclined! &7You have denied their invite!'
+  trust-invite-received: '&a&lInvite! &7You''ve been pvp-invited! &a/pvp trustaccept <player> &7or &c/pvp trustdeny <player>'
+  trust-invite-no-pending: '&c&lError! &7You''ve no pending invites!'
+  trust-invite-already-sent: '&c&lError! &7An invitation has already been sent to this player!'
+  trust-invite-expired-self: '&c&lExpired! &7Your invitation from %player% has expired!'
+  # economy messages
+  kill-economy-add: '&a&lKill! &7Added &f$%value% &7to your balance.'
+  kill-economy-taken: '&a&lKill! &7Added &f$%value% &7from your balance.'
+  death-economy-add: '&4&lDeath! &7Added &f$%value% &7to your balance.'
+  death-economy-taken: '&4&lDeath! &7Removed &f$%value% &7from your balance.'
